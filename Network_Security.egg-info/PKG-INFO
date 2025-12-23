@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: Network-Security
+Version: 0.0.1
+Author: Gogula Vignesh
+Requires-Dist: python-dotenv
+Requires-Dist: pandas
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: requires-dist
