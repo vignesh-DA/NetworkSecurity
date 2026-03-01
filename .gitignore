@@ -1,2 +1,6 @@
 venv
 .env
+logs
+.vscode
+.github
+Artifacts
