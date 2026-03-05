@@ -7,5 +7,6 @@ certifi
 scikit-learn
 scipy
 dill
+pickle
 pyaml
 ## -e . #referring to the setup.py file
