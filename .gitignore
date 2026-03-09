@@ -1,6 +1,7 @@
 venv
 .env
-logs
+logs/
 .vscode
 .github
 Artifacts
+mlruns/

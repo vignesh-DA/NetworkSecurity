@@ -7,6 +7,7 @@ certifi
 scikit-learn
 scipy
 dill
-pickle
+mlflow
 pyaml
+dagshub
 ## -e . #referring to the setup.py file
