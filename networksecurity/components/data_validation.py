@@ -1,6 +1,6 @@
 from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
-from networksecurity.entity.artifact_entity import DataIngestionArtifact, DatavalidationArtifact
+from networksecurity.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact
 from networksecurity.constants.training_pipeline import SCHEMA_FILE_PATH
 from networksecurity.entity.config_entity import DataValidationConfig
 from scipy.stats import ks_2samp
@@ -67,7 +67,7 @@ class DataValidation:
         except Exception as e:
             raise NetworkSecurityException(e, sys)
 
-    def initiate_data_validation(self) -> DatavalidationArtifact:
+    def initiate_data_validation(self) -> DataValidationArtifact:
         try:
             train_file_path = self.data_ingestion_artifact.trained_file_path
             test_file_path = self.data_ingestion_artifact.test_file_path
@@ -97,7 +97,7 @@ class DataValidation:
             test_dataframe.to_csv(self.data_validation_config.valid_test_file_path, index=False)
 
             # Build artifact
-            data_validation_artifact = DatavalidationArtifact(
+            data_validation_artifact = DataValidationArtifact(
                 validation_status=validation_status,
                 valid_train_file_path=self.data_validation_config.valid_train_file_path,
                 valid_test_file_path=self.data_validation_config.valid_test_file_path,

@@ -10,4 +10,5 @@ dill
 mlflow
 pyaml
 dagshub
+fastapi
 ## -e . #referring to the setup.py file
