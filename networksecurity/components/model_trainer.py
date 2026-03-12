@@ -19,9 +19,8 @@ from sklearn.ensemble import (
     RandomForestClassifier
     )
 
-
-import dagshub
-dagshub.init(repo_owner='vignesh-DA', repo_name='NetworkSecurity', mlflow=True)
+# Use local MLflow tracking (avoids SSL errors with remote DagsHub)
+mlflow.set_tracking_uri("mlruns")
 
 
 class ModelTrainer:
@@ -95,11 +94,17 @@ class ModelTrainer:
         classification_train_metric=get_classification_score(y_true=y_train,y_pred=y_train_pred)
 
         # to track the mlflow
-        self.track_mlflow(best_model,classification_train_metric)
+        try:
+            self.track_mlflow(best_model,classification_train_metric)
+        except Exception as mlflow_err:
+            logging.warning(f"MLflow tracking failed (train), continuing: {mlflow_err}")
 
         y_test_pred=best_model.predict(x_test)
         classification_test_metric=get_classification_score(y_true=y_train,y_pred=y_train_pred)
-        self.track_mlflow(best_model,classification_test_metric)
+        try:
+            self.track_mlflow(best_model,classification_test_metric)
+        except Exception as mlflow_err:
+            logging.warning(f"MLflow tracking failed (test), continuing: {mlflow_err}")
 
 
         preprocessor=load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
